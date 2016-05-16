@@ -1,0 +1,30 @@
+body {
+
+}
+
+.box_design {
+    background-color: #f53b3b;
+    margin: 1%;
+}
+
+.header {
+    width: 100%;
+    margin-bottom: 0 !important;
+}
+
+.main {
+    width: 65%;
+    float:left;
+}
+
+.side {
+    float:right;
+    width: 35%;
+}
+
+.footer {
+    clear: both;
+    margin-top: 0 !important;
+    width: 100%;
+}
+
