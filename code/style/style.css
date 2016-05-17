@@ -1,0 +1,132 @@
+
+*{
+    /* following commands prevent padding with interferin with size */
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    border: solid #c9c9c9 1px;
+    padding: 1% 2%;
+}
+
+.header {
+    width: 100%;
+}
+
+.user_main {
+    width: 70%;
+    float:left;
+}
+
+.anonym_main {
+    width: 100%;
+}
+
+.side {
+    float:right;
+    width: 30%;
+}
+
+.footer {
+    clear: both;
+    position:absolute;
+    bottom:10px;
+    width: 100%;
+}
+
+.box {
+    background-color: #dbffd9;
+    width: 100%;
+}
+
+a {
+    display: inline;
+}
+
+h1 {
+    font-family: Impact, Charcoal, sans-serif;
+    font-style: italic;
+    font-size: 420%;
+    margin:0;
+    color: #000000 !important;
+}
+
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.link:hover {
+    color: red;
+}
+
+.header_links {
+    text-align: start !important;
+    position: absolute;
+    right: 3px;
+    bottom: 3px;
+    color: darkgray !important;
+}
+
+.header_box {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+.side_box {
+    height: 600px;
+    text-align: center;
+}
+
+.main_box {
+    height: 600px;
+    text-align: center;
+}
+
+.footer_box {
+
+}
+
+input {
+    width:95%;
+    height: 40px;
+    margin: 10px;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+}
+
+.button {
+    padding: 10px;
+    width: 50%;
+}
+
+.session_form {
+    width:400px;
+    margin:0 auto;
+    padding:0 100px;
+}
+
+/*
+@media screen and (max-width: 550px) {
+    .session_form {
+        padding:0 0;
+        width:100%;
+    }
+}
+*/
+.error {
+    color: red;
+}
+
+
