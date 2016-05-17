@@ -6,9 +6,13 @@
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-<div class="header box_design"> header </div>
-    <div class="main box_design"> main ici</div>
-    <div class="side box_design"> Side ici</div>
-<div class="footer box_design"> Footeur ici </div>
+<div class="header container"> 
+    <div class="header_box">
+        Camagru
+    </div>
+</div>
+<div class="main container"> main</div>
+<div class="side container"> Side</div>
+<div class="footer container"> Footeur </div>
 </body>
 </html>
