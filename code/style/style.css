@@ -48,6 +48,8 @@ body {
 
 a {
     display: inline;
+    text-decoration: none;
+    color:inherit;
 }
 
 h1 {
@@ -125,8 +127,29 @@ form {
     }
 }
 */
+
 .error {
     color: red;
 }
 
+.welcome_box {
+    width : 800px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.homepage_link_box {
+    width: 142px;
+    padding: 2px;
+    margin: 0 auto;
+    text-align:center;
+    background-color: white;
+    border: white solid 2px;
+}
+
+.homepage_link_box:hover
+{
+    background-color: black;
+    color:white !important;
+}
 

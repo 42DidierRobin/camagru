@@ -1,7 +1,47 @@
 <?php
-include "include/head.php";
-include "include/header.php";
-?>
+	session_start();
+	require_once('../model/DAOUser.php');
+	
+	//On verifie si il sagit dune activation demail
+	if (isset($_GET['a'])) {
+		
+	}
 
-<?php include "include/footer.php";
+	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+
+		$password = hash('whirlpool', $_POST['pwd']);
+		$user = DAOUser::getUserByLogin($_POST['login']);
+		if (empty($user)) {
+			$error = 'Cet Utilisateur n\'existe pas';
+		} elseif ($password != $user->getPassword()) {
+			$error = 'Mot de passe faux.';
+		} elseif (empty($_POST['login'])) {
+			$error = 'Champ login vide !';
+		} elseif (empty($_POST['pwd'])) {
+			$error = 'Champ mot de passe vide!';
+		} else {
+			$_SESSION['user'] = serialize($user);
+			header('location: ../index.php');
+			exit (1);
+		}
+	}
+
+	include "../include/head.php";
+	include "../include/header.php";
+
+?>
+	<div class="container">
+		<div class="session_form box">
+			<form action="" method="post">
+				<input type="text" class="text_input" placeholder="login" name="login"
+				       value="<?php echo isset($_POST['login']) ? $_POST['login'] : '' ?>">
+				<input type="password" class="text_input" placeholder="Mot de passe" name="pwd">
+				<div class="error">
+					<?php echo isset($error) ? $error : '' ?>
+				</div>
+				<input class="button" type="submit" value="Créer">
+			</form>
+		</div>
+	</div>
+<?php include "../include/footer.php";
 ?>

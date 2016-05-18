@@ -1,30 +1,26 @@
 <?php
 
+	require_once('../model/DAOUser.php');
+
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-		$dbh = new PDO('mysql:host=localhost;dbname=camagru', 'camagru_user', 'camagru42');
-		$statment = $dbh->prepare("SELECT * FROM users WHERE login = :login");
-		$statment->bindValue(':login', $_POST['login']);
-		$statment->execute();
-		$result = $statment->fetch();
-		//TODO: verifier correctement le formatage des champs du formulaire (espace, nb de charactere etc)
+		$result = DAOUser::getUserByLogin($_POST['login']);
 		if (!empty($result)) {
 			$error = 'Utilisateur deja existant';
 		} elseif ($_POST['pwd'] != $_POST['pwd2']) {
 			$error = 'Mots de passe non identiques';
+		} elseif (empty($_POST['login'])) {
+			$error = 'Champ login vide !';
 		} elseif (empty($_POST['email'])) {
 			$error = 'Champ email vide!';
 		}elseif (empty($_POST['login'])) {
 			$error = 'utilisateur deja existant!';
 		} else {
-			//TODO: Tout est bon, creer la page dacceuil et envoyer lemail
-			echo 'comte cree !';
-			$password = hash('whirlpool', $_POST['pwd']);
-			$statment = $dbh->prepare("INSERT INTO users (login, password, email) VALUES (:login, :password , :email)");
-			$statment->bindValue(':login', $_POST['login']);
-			$statment->bindValue(':password', $password);
-			$statment->bindValue(':email', $_POST['email']);
-			$statment->execute();
+			$user = DAOUser::newUser($_POST['login'], hash('whirlpool',$_POST['pwd']), $_POST['email']);
+			$link = 'http://164.132.103.226/Camagru/connection?a='.$user->getActivation();
+			mail($_POST['email'], "Camagru confirmation",'Welcome ! Follow this link to activate your account : '.$link);
+			header('location: welcome.php');
+			exit (1);
 		}
 	}
 
