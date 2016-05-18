@@ -4,6 +4,7 @@
 
 	if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
+		//TODO: verifier les entrees avec des expressions regulieres
 		$result = DAOUser::getUserByLogin($_POST['login']);
 		if (!empty($result)) {
 			$error = 'Utilisateur deja existant';
@@ -17,7 +18,7 @@
 			$error = 'utilisateur deja existant!';
 		} else {
 			$user = DAOUser::newUser($_POST['login'], hash('whirlpool',$_POST['pwd']), $_POST['email']);
-			$link = 'http://164.132.103.226/Camagru/connection?a='.$user->getActivation();
+			$link = 'http://164.132.103.226/Camagru/page/connection.php?a='.$user->getActivation();
 			mail($_POST['email'], "Camagru confirmation",'Welcome ! Follow this link to activate your account : '.$link);
 			header('location: welcome.php');
 			exit (1);

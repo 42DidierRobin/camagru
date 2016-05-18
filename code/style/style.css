@@ -25,6 +25,11 @@ body {
     float:left;
 }
 
+.user_side {
+    width: 30%;
+    float:right;
+}
+
 .anonym_main {
     width: 100%;
 }
@@ -153,3 +158,20 @@ form {
     color:white !important;
 }
 
+button.picture {
+    width: 100px;
+    height: 40px;
+    marge: 0 auto;
+    border: solid white 2px;
+}
+
+div.button_box {
+    width:100%;
+}
+
+div.video_container {
+    width: 500px;
+    height: 375px;
+    margin: 0 auto;
+    background-color: black;
+}
