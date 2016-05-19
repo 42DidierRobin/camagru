@@ -8,14 +8,20 @@
 
 <div class="user_main container">
 	<div class="main_box box">
-		<div id="video_container">
-			<video id="camera-stream" width="500" autoplay></video>
+		<div class="video_box">
+			<div class="video_container">
+				<video id="camera_stream" class="camera_stream" autoplay></video>
+			</div>
+			<div class="button_box">
+				<button id="ouistiti" class="picture">Ouistiti</button>
+			</div>
+			<canvas id="canvas" class="camera_stream" style="display: none"></canvas>
+			<script src="./js/camera.js"></script>
 		</div>
-		<div class="button_box">
-			<button class="picture">Ouistiti</button>
+		<div class="vertical_bar"></div>
+		<div class="picture_box">
+			
 		</div>
-
-		<script src="./js/camera.js"></script>
 	</div>
 </div>
 <div class="user_side container">
