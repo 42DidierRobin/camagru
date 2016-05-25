@@ -1,10 +1,16 @@
 <?php
+
+	require_once ("./model/DAOPicture.php");
 	/**
 	 * Created by PhpStorm.
 	 * User: rdidier
 	 * Date: 5/17/16
 	 * Time: 6:23 PM
-	 */ ?>
+	 */
+
+	echo "test";
+	DAOPicture::getUserPicture('Mathiisss');
+?>
 
 <div class="user_main container">
 	<div class="main_box box">

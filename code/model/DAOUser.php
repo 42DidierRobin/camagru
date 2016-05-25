@@ -18,7 +18,8 @@
 
 		public static function getUserByLogin($login)
 		{
-			$statement = PDOS::getInstance()->prepare("SELECT * FROM users WHERE login = :login");
+			$statement = PDOS::getInstance()->prepare
+							("SELECT * FROM users WHERE login = :login");
 			$statement->bindValue(':login', $login);
 			$statement->execute();
 			$result = $statement->fetch();
@@ -33,7 +34,8 @@
 			//TODO: verefier que cette chaine randome dexiste pas deja
 			$activation = self::random_str(42);
 			$statement = PDOS::getInstance()->prepare
-				("INSERT INTO users (login, email, password, activation) VAlUE (:login, :email, :password, :activation)");
+				("INSERT INTO users (login, email, password, activation) 
+							VAlUE (:login, :email, :password, :activation)");
 			$statement->bindValue(':login', $login);
 			$statement->bindValue(':email', $email);
 			$statement->bindValue(':activation', $activation);
@@ -45,14 +47,14 @@
 		public static function activateUserByKey($key)
 		{
 			$statement = PDOS::getInstance()->prepare
-			("SELECT login FROM users WHERE activation=:key");
+				("SELECT login FROM users WHERE activation=:key");
 			$statement->bindValue(':key', $key);
 			$statement->execute();
 			$login = $statement->fetch()['login'];
 			if (!$login)
 				return (null);
 			$statement = PDOS::getInstance()->prepare
-			("UPDATE users SET activation=null WHERE login=:login");
+				("UPDATE users SET activation=null WHERE login=:login");
 			$statement->bindValue(':login', $login);
 			$statement->execute();
 			return ($login);
