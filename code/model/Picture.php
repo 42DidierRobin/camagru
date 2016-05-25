@@ -9,21 +9,18 @@
 	{
 		private $id;
 		private $data;
-		private $likes;
 		private $user;
 
 		/**
 		 * Picture constructor.
 		 * @param $id
 		 * @param $data
-		 * @param $likes
 		 * @param $user
 		 */
 		public function __construct($id, $data, $user)
 		{
 			$this->id = $id;
 			$this->data = $data;
-			$this->likes = 0;
 			$this->user = $user;
 		}
 
@@ -58,22 +55,6 @@
 		public function setData($data)
 		{
 			$this->data = $data;
-		}
-
-		/**
-		 * @return mixed
-		 */
-		public function getLikes()
-		{
-			return $this->likes;
-		}
-
-		/**
-		 * @param mixed $likes
-		 */
-		public function setLikes($likes)
-		{
-			$this->likes = $likes;
 		}
 
 		/**

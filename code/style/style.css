@@ -180,9 +180,9 @@ div.picture_box {
 }
 
 div.video_container {
-    width: 500px;
-    height: 375px;
-    margin: 40px auto;
+    width: 80%;
+    height: 80%;
+    margin: auto auto;
     background-color: black;
 }
 
@@ -195,5 +195,23 @@ div.video_container {
 }
 
 .camera_stream {
-    width:500px;
+    width: 100%;
+}
+
+.pic_box {
+    margin: 10px;
+    width: 150px;
+    display: inline-block;
+}
+
+.pictures {
+    width: 100%;
+    height: auto;
+}
+
+.all_pic_container {
+    width: 96%;
+    margin: auto;
+    height: 95%;
+    overflow-y: auto;
 }

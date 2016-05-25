@@ -15,6 +15,7 @@
 	private function __construct()
 	{
 		self::$pdoInstance = new PDO('mysql:host=localhost;dbname=camagru', 'camagru_user', 'camagru42');
+		self::$pdoInstance->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
 	}
 
 	public static function getInstance()

@@ -9,5 +9,6 @@
 <div class="container anonym_main">
     <div class="main_box box">
         photo du site
+        <?php require_once "./page/list_picture.php";?>
     </div>
 </div>

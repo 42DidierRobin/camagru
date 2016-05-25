@@ -1,6 +1,7 @@
 <?php
 
 	require_once ("./model/DAOPicture.php");
+	require_once ("./model/User.php");
 	/**
 	 * Created by PhpStorm.
 	 * User: rdidier
@@ -8,8 +9,13 @@
 	 * Time: 6:23 PM
 	 */
 
-	echo "test";
-	DAOPicture::getUserPicture('Mathiisss');
+	 if (isset($_POST['picture']))
+	 {
+		 $user = unserialize($_SESSION['user'])->getLogin();
+		 DAOPicture::newPicture($user,$_POST['picture']);
+		 header("location: index.php");
+		 exit(1);
+	 }
 ?>
 
 <div class="user_main container">
@@ -33,6 +39,7 @@
 <div class="user_side container">
 	<div class="side_box box">
 		photo prises
+		<?php require_once "./page/list_picture.php";?>
 	</div>
 </div>
 </body>
