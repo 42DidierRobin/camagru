@@ -96,6 +96,7 @@ h1 {
 .main_box {
     height: 600px;
     text-align: center;
+    position: relative;
 }
 
 .footer_box {
@@ -168,18 +169,19 @@ div.button_box {
     width:100%;
 }
 
-div.video_box{
+div.video_picture_box{
     width: 50%;
     float:left;
     margin: 0;
 }
 
-div.picture_box {
+div.picture_options_box {
     width: 48%;
+    height: 100%;
     float:left;
 }
 
-div.video_container {
+div.video_picture_container {
     width: 80%;
     height: 80%;
     margin: auto auto;
@@ -214,4 +216,51 @@ div.video_container {
     margin: auto;
     height: 95%;
     overflow-y: auto;
+}
+
+.picture_user_button {
+    width: 90%;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+.like_box {
+    position: absolute;
+    width: 50px;
+    left: 2px;
+    top: 20px;
+}
+
+img.thumbs_up_pic {
+    width: 50%;
+    float:right;
+}
+
+p.nbr_like {
+    width: 50%;
+    float: left;
+}
+
+.all_comments_container {
+    width: 96%;
+    margin: auto;
+    height: 95%;
+    overflow-y: auto;
+}
+
+.comment_box {
+    clear: both;
+    border-bottom: solid white 2px;
+}
+
+.comment_user {
+    max-width: 25%;
+    float:left;
+    text-align: left;
+    font-style: italic;
+}
+
+.comment_content {
+    max-width: 75%;
+    float:right;
 }

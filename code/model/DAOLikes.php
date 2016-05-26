@@ -1,6 +1,6 @@
 <?php
 
-	require_once("./Likes.php");
+	require_once("Likes.php");
 
 	/**
 	 * Created by PhpStorm.
@@ -11,18 +11,16 @@
 	class DAOLikes
 	{
 
-		private static function didHeLikedIt($user, $picture)
+		public static function didHeLikedIt($user, $picture)
 		{
 			$statement = PDOS::getInstance()->prepare
-			("SELECT * FROM likes WHERE user=:user AND picture=:picture");
-			$statement->bindValue(':user', $user);
-			$statement->bindValue(':picture', $picture);
+			("SELECT * FROM likes WHERE (user=:user AND pic_id=:picture)");
+			$statement->bindValue(':user', $user, PDO::PARAM_STR);
+			$statement->bindValue(':picture', $picture, PDO::PARAM_INT);
 			$statement->execute();
 			$res = $statement->fetch();
 			if ($res)
-			{
-				return (true);
-			}
+				return ($res['id']);
 			return (false);
 		}
 
@@ -31,7 +29,7 @@
 			if (!self::didHeLikedIt($user, $picture))
 			{
 				$statement = PDOS::getInstance()->prepare
-				("INSERT INTO likes (user, picture) 
+				("INSERT INTO likes (user, pic_id) 
 							VAlUE (:user, :picture)");
 				$statement->bindValue(':user', $user);
 				$statement->bindValue(':picture', $picture);
@@ -40,20 +38,25 @@
 				("SELECT MAX(id) FROM likes");
 				$statement->execute();
 				$id = $statement->fetch();
-				return (new Like($user, $picture, $id));
+				return (new Likes($user, $picture, $id));
 			}
-			else
-			{
-				//TODO: supprimer le like
-			}
+			return (null);
 		}
 
-		public static function getNbrLikes($picture)
+		public static function getNbrLikes($pic_id)
 		{
 			$statement = PDOS::getInstance()->prepare
-			("SELECT COUNT(*) FROM likes WHERE picture=:picture");
-			$statement->bindValue(':picture', $picture);
+			("SELECT COUNT(*) FROM likes WHERE pic_id=:picture");
+			$statement->bindValue(':picture', $pic_id, PDO::PARAM_INT);
 			$statement->execute();
-			return ($statement->fetch());
+			return ($statement->fetch()['COUNT(*)']);
+		}
+		
+		public static function deleteLike($id)
+		{
+			$statement = PDOS::getInstance()->prepare
+			("DELETE FROM likes WHERE id=:id");
+			$statement->bindValue(':id', $id, PDO::PARAM_INT);
+			$statement->execute();	
 		}
 	}

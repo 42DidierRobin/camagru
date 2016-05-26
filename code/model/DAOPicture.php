@@ -35,7 +35,7 @@
 			return (new Picture($id, $data, $user));
 		}
 
-		public static function getUserPicture($user)
+		public static function getUserListPicture($user)
 		{
 			$statement = PDOS::getInstance()->prepare
 			("SELECT * FROM pictures WHERE user = :user");
@@ -54,5 +54,35 @@
 			$statement->execute();
 			$result = $statement->fetchAll();
 			return (self::tabToObject($result));
+		}
+		
+		public static function getPictureFromId($id)
+		{
+			$statement = PDOS::getInstance()->prepare
+			("SELECT * FROM pictures WHERE id=:id");
+			$statement->bindValue(':id', $id, PDO::PARAM_INT);
+			$statement->execute();
+			$r = $statement->fetch();
+			return (new Picture($id, $r['data'], $r['user']));
+		}
+
+		public static function deletePicture($id)
+		{
+			$statement = PDOS::getInstance()->prepare
+			("DELETE FROM pictures WHERE id=:id");
+			$statement->bindValue(':id', $id, PDO::PARAM_INT);
+			$statement->execute();
+		}
+		
+		public static function checkIdentity($user, $pic_id)
+		{
+			$statement = PDOS::getInstance()->prepare
+			("SELECT * FROM pictures WHERE (user=:user AND id=:id)");
+			$statement->bindValue(':id', $pic_id, PDO::PARAM_INT);
+			$statement->bindValue(':user', $user, PDO::PARAM_STR);
+			$statement->execute();
+			if (empty($statement->fetch()))
+				return (false);
+			return (true);
 		}
 	}
