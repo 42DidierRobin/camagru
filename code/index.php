@@ -10,10 +10,10 @@
 		include "include/header.php";
 
 
-		if (isset($_SESSION['user']))
+		if (isset($_SESSION['user']) && !isset($_GET['all_picture']))
 			include "./page/index_user.php";
 		else
-			include "./page/index_anonym.php";
+			include "./page/all_picture.php";
 
 		include "include/footer.php";
 	}

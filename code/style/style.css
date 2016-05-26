@@ -264,3 +264,9 @@ p.nbr_like {
     max-width: 75%;
     float:right;
 }
+
+.all_picture_link {
+    position:absolute;
+    left: 5px;
+    bottom:5px;
+}

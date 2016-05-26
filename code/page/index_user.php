@@ -4,6 +4,7 @@
 	require_once("./model/DAOComments.php");
 	require_once("./model/User.php");
 	require_once ("./model/DAOLikes.php");
+	require_once "./page/list_picture.php";
 	/**
 	 * Created by PhpStorm.
 	 * User: rdidier
@@ -70,8 +71,8 @@
 </div>
 <div class="user_side container">
 	<div class="side_box box">
-		photo prises
-		<?php require_once "./page/list_picture.php"; ?>
+		Mes photos
+		<?php  list_it(DAOPicture::getUserListPicture(unserialize($_SESSION['user'])->getLogin()))?>
 	</div>
 </div>
 </body>

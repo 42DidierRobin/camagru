@@ -45,7 +45,7 @@
 			$statement->bindValue(":id", $pic_id);
 			$statement->execute();
 			$r = $statement->fetchAll();
-			return (self::tabToObject($r));
+			return (array_reverse(self::tabToObject($r)));
 		}
 		
 	}

@@ -8,34 +8,29 @@
 	require_once("./model/DAOPicture.php");
 	require_once("./model/User.php");
 
-	if (isset($_SESSION['user']))
+	function list_it($list)
 	{
-		$user = unserialize($_SESSION['user'])->getLogin();
-		$list = DAOPicture::getUserListPicture($user);
-		$list = array_reverse($list, true);
-		$test=true;
-	}
-	else
-	{
-		$list = DAOPicture::getRandomPicture(42);
-		$test = false;
-	}
-	
-	if ($list)
-	{
-		echo '<div class="all_pic_container">';
-		foreach ($list as $v)
+		if ($list)
 		{
-			echo '<a href="';
-			if ($test)
-				echo './index.php?pic_id='. $v->getId();
-			else
-				echo './page/connection.php';
-			echo '">';
-			echo '<div class="pic_box">';
-			echo '<img class="pictures" id="' . $v->getId() . '" src="' . $v->getData() . '"">';
-			echo '</div></a>';
+			echo '<div class="all_pic_container">';
+			foreach ($list as $v)
+			{
+				echo '<a href="';
+				if (isset($_SESSION['user']))
+				{
+					echo './index.php?pic_id=' . $v->getId();
+				}
+				else
+				{
+					echo './page/connection.php';
+				}
+				echo '">';
+				echo '<div class="pic_box">';
+				echo '<img class="pictures" id="' . $v->getId() . '" src="' . $v->getData() . '"">';
+				echo '</div></a>';
+			}
+			echo '</div>';
 		}
-		echo '</div>';
 	}
+?>
 

@@ -7,6 +7,20 @@
 				Camagru
 			</h1>
 		</a>
+		<?php
+			if (isset($_SESSION['user']))
+			{
+				echo '<div class="all_picture_link">
+					<a href="/Camagru/index.php?all_picture" class="link">
+						Parcourir toutes les photos
+					</a>
+					| 
+					<a href="/Camagru/index.php?" class="link">
+						Prendre une photo
+					</a></div>';
+			}
+				?>
+
 		<div class="header_links">
 			<?php
 				if (isset($_SESSION['user']))

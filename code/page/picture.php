@@ -7,6 +7,7 @@
 	 */
 
 	$pic = DAOPicture::getPictureFromId($_GET['pic_id']);
+	$user = unserialize($_SESSION['user'])->getLogin();
 ?>
 
 <div class="video_picture_box">
@@ -16,11 +17,13 @@
 		?>
 	</div>
 	<div class="picture_user_button">
-		<a href="./index.php?<?php echo 'pic_id=' . $pic->getId() . '&delete_picture=' . $pic->getId(); ?>">
-			<input type="button" value="delete">
-		</a>
 		<?php
-			if ($id = DAOLikes::didHeLikedIt($pic->getUser(), $pic->getId()))
+
+			if ( $user == $pic->getUser())
+				echo '<a href="./index.php?pic_id=' . $pic->getId() . '&delete_picture=' . $pic->getId().'">
+						<input type="button" value="delete"></a>';
+
+			if ($id = DAOLikes::didHeLikedIt($user, $pic->getId()))
 			{
 				echo '<a href="./index.php?dislike=' . $id . '&pic_id=' . $pic->getId() . '">
 						<input type="button" value="dislike">
@@ -38,6 +41,9 @@
 			<input type="hidden" value="<?php echo $pic->getId(); ?>" name="pic_id">
 			<input type="submit" value="add comment">
 		</form>
+		<a href="./index.php?>">
+			<input type="button" value="prendre une photo">
+		</a>
 
 	</div>
 </div>
