@@ -25,5 +25,9 @@
 			<img id="overwatch.png" class="picture_to_add" src="/Camagru/files/overwatch.png" alt="" name="overwatch">
 			<img id="hearthstone.png" class="picture_to_add" src="/Camagru/files/hearthstone.png" alt="" name="hearthstone">
 			<img id="rleague.png" class="picture_to_add" src="/Camagru/files/rleague.png" alt="" name="rleague">
+			<img id="wow.png" class="picture_to_add" src="/Camagru/files/wow.png" alt="" name="wow">
+			<img id="aoe2.png" class="picture_to_add" src="/Camagru/files/aoe2.png" alt="" name="aoe2">
+			<img id="assassin.png" class="picture_to_add" src="/Camagru/files/assassin.png" alt="" name="assassin">
+			<img id="cod.png" class="picture_to_add" src="/Camagru/files/cod.png" alt="" name="cod">
 	</div>
 </div>
