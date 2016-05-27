@@ -158,10 +158,12 @@ form {
     color:white !important;
 }
 
-button.picture {
+button.ouistiti {
     width: 100px;
     height: 40px;
     margin: 0 auto;
+    color: white;
+    background-color: green;
     border: solid white 2px;
 }
 
@@ -269,4 +271,28 @@ p.nbr_like {
     position:absolute;
     left: 5px;
     bottom:5px;
+}
+
+.picture_to_add_box{
+    width: 80%;
+    margin: 10px auto;
+    display: inline-block;
+}
+
+.picture_to_add {
+    width: 150px;
+    margin: auto;
+    border: solid transparent 2px;
+}
+
+.picture_to_add:hover {
+    border: solid white 2px;
+}
+
+.selected {
+    border: solid red 2px !important;
+}
+
+.disabled {
+    background-color: red !important;
 }

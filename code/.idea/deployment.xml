@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" autoUpload="Always" serverName="ovh_private_server">
+  <component name="PublishConfigData" autoUpload="Always" serverName="private_ovh_server">
     <serverData>
-      <paths name="ovh_private_server">
+      <paths name="private_ovh_server">
         <serverdata>
           <mappings>
-            <mapping deploy="/Camagru" local="$PROJECT_DIR$" web="Camagru" />
+            <mapping deploy="/var/www/Camagru" local="$PROJECT_DIR$" web="/Camagru" />
           </mappings>
         </serverdata>
       </paths>

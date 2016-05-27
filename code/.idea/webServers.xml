@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="52673255-c2f6-471e-8854-4511349bbc2f" name="private_ovh_server" url="http://164.132.103.226">
+        <fileTransfer host="164.132.103.226" port="22" accessType="SFTP" password="dffcdfe1dfd9dfd3dfdcdf9edfc2dfe6" username="root">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

@@ -10,6 +10,7 @@
 		private $id;
 		private $data;
 		private $user;
+		private $date;
 
 		/**
 		 * Picture constructor.
@@ -17,13 +18,13 @@
 		 * @param $data
 		 * @param $user
 		 */
-		public function __construct($id, $data, $user)
+		public function __construct($id, $data, $user, $date)
 		{
 			$this->id = $id;
 			$this->data = $data;
 			$this->user = $user;
+			$this->date = $date;
 		}
-
 
 		/**
 		 * @return mixed

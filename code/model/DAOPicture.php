@@ -16,7 +16,7 @@
 		{
 			$ret = array();
 			foreach ($tab as $v)
-				array_push($ret, new Picture($v['id'], $v['data'], $v['user']));
+				array_push($ret, new Picture($v['id'], $v['data'], $v['user'], $v['timestamp']));
 			return ($ret);
 		}
 
@@ -29,10 +29,10 @@
 			$statement->bindValue(':data', $data);
 			$statement->execute();
 			$statement = PDOS::getInstance()->prepare
-			("SELECT MAX(id) FROM pictures");
+			("SELECT id, timestamp FROM pictures WHERE id=(SELECT MAX(id) FROM pictures)");
 			$statement->execute();
-			$id = $statement->fetch();
-			return (new Picture($id, $data, $user));
+			$res = $statement->fetch();
+			return (new Picture($res['id'], $data, $user, $res['timestamp']));
 		}
 
 		public static function getUserListPicture($user)
@@ -45,12 +45,10 @@
 			return (self::tabToObject($result));
 		}
 
-		public static function getRandomPicture($nbr)
+		public static function getAllPicture()
 		{
-			var_dump($nbr);
 			$statement = PDOS::getInstance()->prepare
-			("SELECT * FROM pictures ORDER BY RAND() LIMIT :nbr");
-			$statement->bindValue(':nbr', $nbr, PDO::PARAM_INT);
+			("SELECT * FROM pictures ORDER BY timestamp DESC");
 			$statement->execute();
 			$result = $statement->fetchAll();
 			return (self::tabToObject($result));
@@ -63,7 +61,7 @@
 			$statement->bindValue(':id', $id, PDO::PARAM_INT);
 			$statement->execute();
 			$r = $statement->fetch();
-			return (new Picture($id, $r['data'], $r['user']));
+			return (new Picture($id, $r['data'], $r['user'], $r['timestamp']));
 		}
 
 		public static function deletePicture($id)
