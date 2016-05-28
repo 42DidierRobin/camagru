@@ -38,7 +38,7 @@
 		public static function getUserListPicture($user)
 		{
 			$statement = PDOS::getInstance()->prepare
-			("SELECT * FROM pictures WHERE user = :user");
+			("SELECT * FROM pictures WHERE user = :user ORDER BY timestamp DESC ");
 			$statement->bindValue(':user', $user);
 			$statement->execute();
 			$result = $statement->fetchAll();

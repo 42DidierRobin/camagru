@@ -296,3 +296,23 @@ p.nbr_like {
 .disabled {
     background-color: red !important;
 }
+
+.no_camera_text {
+    color: white;
+}
+
+#no_camera_div {
+    visibility: hidden;
+    width: 0;
+    height: 0;
+    margin: auto;
+    color:white;
+    border: white 1px solid;
+}
+
+a.forget_password {
+    font-size: 14px;
+    font-style: italic;
+    margin:0;
+}
+

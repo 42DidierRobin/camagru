@@ -10,8 +10,7 @@
 	{
 		private static $pdoInstance = null;
 		private static $instance = null;
-		
-	//TODO : mettre les informations de connection a la base de donne dans le fichier config.ini (cf sujet)	
+			
 	private function __construct()
 	{
 		self::$pdoInstance = new PDO('mysql:host=localhost;dbname=camagru', 'camagru_user', 'camagru42');

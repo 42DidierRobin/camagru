@@ -1,4 +1,4 @@
-// pour les differents browser
+// pour les differents browser	 */
 navigator.getMedia = (
     navigator.getUserMedia ||
     navigator.webkitGetUserMedia ||
@@ -14,7 +14,10 @@ var height = 0;
 var streaming = false;
 var ListPictures;
 var selectedPicture = null;
-
+var cameraBool = true;
+var uploadBool = false;
+var file = null;
+var pictureUploaded;
 
 //Chargement des images
 window.onload = function (e) {
@@ -37,6 +40,31 @@ function onClickPicture() {
     button.firstChild.data = "Ouistiti!";
 };
 
+function noCamera() {
+    cameraBool = false;
+    div = document.getElementById("no_camera_div");
+    div.style = "visibility: visible; width: 80%; height: auto";
+    video.style = "width:0; height:0;";
+    if (window.File && window.FileReader && window.FileList && window.Blob) {
+        document.getElementById('fileToUpload').addEventListener('change', function (e) {
+            var ListFiles = e.target.files;
+            file = ListFiles[0];
+            uploadIt();
+        }, false);
+    }
+}
+
+function uploadIt(e) {
+    if (file)
+    {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            pictureUploaded = btoa(e.target.result);
+        };
+        reader.readAsBinaryString(file);
+        uploadBool = true;
+    }
+}
 
 //Following for camera
 if (navigator.getMedia) {
@@ -46,7 +74,7 @@ if (navigator.getMedia) {
             video.src = window.URL.createObjectURL(localMediaStream);
         },
         function (err) {
-            console.log('The following error occurred when trying to use getUserMedia: ' + err);
+            noCamera();
         });
 } else {
     alert('Sorry, your browser does not support getUserMedia');
@@ -70,11 +98,18 @@ button.addEventListener('click', function (ev) {
 }, false);
 
 function takePicture() {
-    canvas.width = width;
-    canvas.height = height;
-    canvas.getContext("2d").drawImage(video, 0, 0, width, height);
-    var img = canvas.toDataURL("image/png");
-    picture_submit(window.location.href, img);
+    if (cameraBool) {
+        canvas.width = width;
+        canvas.height = height;
+        canvas.getContext("2d").drawImage(video, 0, 0, width, height);
+        var img = canvas.toDataURL("image/png");
+        picture_submit(window.location.href, img);
+    } else if (uploadBool) {
+        //console.log(pictureUploaded);
+        picture_submit(window.location.href, pictureUploaded);
+    } else {
+        alert("choose a file");
+    }
 }
 
 function picture_submit(url, picture) {
@@ -91,7 +126,6 @@ function picture_submit(url, picture) {
     stamp.setAttribute("value", selectedPicture);
     form.appendChild(img_64);
     form.appendChild(stamp);
-    console.log(form.children);
     document.body.appendChild(form);
     form.submit();
 }

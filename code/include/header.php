@@ -2,7 +2,7 @@
 <body>
 <div class="header container">
 	<div class="header_box box">
-		<a href="/Camagru/index.php">
+		<a href="/index.php">
 			<h1>
 				Camagru
 			</h1>
@@ -11,12 +11,12 @@
 			if (isset($_SESSION['user']))
 			{
 				echo '<div class="all_picture_link">
-					<a href="/Camagru/index.php?all_picture" class="link">
-						Parcourir toutes les photos
+					<a href="/index.php?all_picture" class="link">
+						Browse user pictures
 					</a>
 					| 
-					<a href="/Camagru/index.php?" class="link">
-						Prendre une photo
+					<a href="/index.php?" class="link">
+						Take a picture
 					</a></div>';
 			}
 				?>
@@ -25,13 +25,13 @@
 			<?php
 				if (isset($_SESSION['user']))
 				{
-					echo '<a href="/Camagru/index.php?deco=42" class="link">Disconnect</a>';
+					echo '<a href="/index.php?deco=42" class="link">Disconnect</a>';
 				}
 				else
-					echo '<a href="/Camagru/page/connection.php" class="link">Connect</a>'
+					echo '<a href="/page/connection.php" class="link">Connect</a>'
 			?>
 			|
-			<a href="/Camagru/page/inscription.php" class="link">
+			<a href="/page/inscription.php" class="link">
 				Subscribe
 			</a>
 		</div>

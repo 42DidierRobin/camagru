@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	
 
     if (isset($_GET['deco'])) {
 	    session_destroy();
@@ -10,11 +11,10 @@
 		include "include/header.php";
 
 
-		if (isset($_SESSION['user']) && !isset($_GET['all_picture']))
+		if (isset($_SESSION['user']) && !isset($_GET['all_picture']) && !isset($_GET['p']))
 			include "./page/index_user.php";
 		else
 			include "./page/all_picture.php";
-
 		include "include/footer.php";
 	}
 ?>

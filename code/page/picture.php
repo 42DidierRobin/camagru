@@ -18,7 +18,6 @@
 	</div>
 	<div class="picture_user_button">
 		<?php
-
 			if ( $user == $pic->getUser())
 				echo '<a href="./index.php?pic_id=' . $pic->getId() . '&delete_picture=' . $pic->getId().'">
 						<input type="button" value="delete"></a>';
@@ -53,7 +52,7 @@
 		<p class="nbr_like">
 			<?php echo DAOLikes::getNbrLikes($pic->getId()); ?>
 		</p>
-		<img class="thumbs_up_pic" src="/Camagru/files/like.png" alt="">
+		<img class="thumbs_up_pic" src="/files/like.png" alt="">
 	</div>
 		<?php require_once ("list_comments.php");?>
 </div>

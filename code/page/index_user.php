@@ -16,8 +16,13 @@
 	if (isset($_POST['picture']))
 	{
 		$user = unserialize($_SESSION['user'])->getLogin();
+
 		$img = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $_POST['picture']));
 		$img = imagecreatefromstring($img);
+		if (!$img)
+		{
+			echo 'yo';
+		}
 		$stamp = imagecreatefrompng("./files/".$_POST['png']);
 		$marge_right = 10;
 		$marge_bottom = 10;

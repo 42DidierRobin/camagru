@@ -11,5 +11,5 @@
 <head>
     <meta charset="UTF-8">
     <title>Camagru by Mathiisss</title>
-    <link rel="stylesheet" href="/Camagru/style/style.css">
+    <link rel="stylesheet" href="/style/style.css">
 </head>
