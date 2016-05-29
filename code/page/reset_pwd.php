@@ -11,7 +11,7 @@
 
 	if (isset($_POST['login']) && isset($_POST['mail']))
 	{
-		if (DAOUser::controlUser(strtolower($_POST['login']), $_POST['mail']))
+		if (DAOUser::controlUser(strtolower($_POST['login']), strtolower($_POST['mail'])))
 		{
 			$newPwd = DAOUser::randomPwd();
 			$user = DAOUser::getUserByLogin($_POST['login']);
@@ -27,7 +27,7 @@
 			$error = "the combination user/email doesnt exist";
 		}
 	}
-	else {
+	else if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 		$error = "Please fill inputs.";
 	}
 

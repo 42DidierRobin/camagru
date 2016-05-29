@@ -5,8 +5,8 @@
 	 * Date: 5/25/16
 	 * Time: 3:04 PM
 	 */
-	require_once("./model/DAOPicture.php");
-	require_once("./model/User.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/DAOPicture.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/User.php");
 
 	function list_it($list)
 	{
@@ -26,7 +26,7 @@
 				}
 				echo '">';
 				echo '<div class="pic_box">';
-				echo '<img class="pictures" id="' . $v->getId() . '" src="' . $v->getData() . '"">';
+				echo '<img class="pictures " id="' . $v->getId() . '" src="' . $v->getData() . '"">';
 				echo '</div></a>';
 			}
 			echo '</div>';

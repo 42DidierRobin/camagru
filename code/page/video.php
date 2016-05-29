@@ -15,6 +15,7 @@
 				<label class="no_camera_text" for="fileToUpload">
 					No Camera detected. Upload a file instead :</label>
 				<input type="file" id="fileToUpload"/>
+				<p class="error"><?php echo $error;?></p>
 			</div>
 		</div>
 	</div>
@@ -24,9 +25,7 @@
 	<canvas id="canvas" class="camera_stream" style="display: none"></canvas>
 	<script src="./js/camera.js"></script>
 </div>
-<div class="vertical_bar"></div>
 <div class="picture_options_box">
-	What do YOU play ?!
 	<div id="picture_to_add_box">
 		<img id="lol.png" class="picture_to_add" src="/files/lol.png" alt="" name="lol">
 		<img id="overwatch.png" class="picture_to_add" src="/files/overwatch.png" alt="" name="overwatch">

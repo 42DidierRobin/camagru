@@ -5,7 +5,11 @@
 	 * Date: 5/26/16
 	 * Time: 11:27 AM
 	 */
-
+	if (!DAOPicture::pictureExist($_GET['pic_id']))
+	{
+		header('location: /index.php');
+		exit(1);
+	}
 	$pic = DAOPicture::getPictureFromId($_GET['pic_id']);
 	$user = unserialize($_SESSION['user'])->getLogin();
 ?>
@@ -40,10 +44,6 @@
 			<input type="hidden" value="<?php echo $pic->getId(); ?>" name="pic_id">
 			<input type="submit" value="add comment">
 		</form>
-		<a href="./index.php?>">
-			<input type="button" value="prendre une photo">
-		</a>
-
 	</div>
 </div>
 <div class="vertical_bar"></div>

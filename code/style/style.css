@@ -1,19 +1,52 @@
 
-*{
+* {
     /* following commands prevent padding with interferin with size */
     -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
-    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    -moz-box-sizing: border-box; /* Firefox, other Gecko */
     box-sizing: border-box;
+    transition: all 0.2s;
 }
 
 body {
     margin: 0;
     padding: 0;
+    background-color: #cdcaca;
 }
 
 .container {
-    border: solid #c9c9c9 1px;
     padding: 1% 2%;
+}
+
+.header_container {
+    padding: 0 0 1% 0;
+    color: whitesmoke;
+}
+
+.pagination {
+    position: absolute;
+    float: left;
+    left: 10px;
+    bottom: 50px;
+    width: 100%;
+    height: 40px;
+}
+
+a.pagination {
+    position: relative;
+    width: 35px;
+}
+
+.page_box {
+    margin: 1px;
+    width: 32px !important;
+    height: 32px;
+    background-color: #15882f;
+    color: white;
+    line-height: 30px;
+}
+
+.shadow:hover {
+    box-shadow: -3px -3px 2px black;
 }
 
 .header {
@@ -22,12 +55,12 @@ body {
 
 .user_main {
     width: 70%;
-    float:left;
+    float: left;
 }
 
 .user_side {
     width: 30%;
-    float:right;
+    float: left;
 }
 
 .anonym_main {
@@ -35,33 +68,33 @@ body {
 }
 
 .side {
-    float:right;
+    float: right;
     width: 30%;
 }
 
 .footer {
     clear: both;
-    position:absolute;
-    bottom:10px;
     width: 100%;
 }
 
 .box {
-    background-color: #e6eaff;
+    background-color: #e7e4e4;
     width: 100%;
+    border-radius: 4px;
+    min-width: 430px;
 }
 
 a {
     display: inline;
     text-decoration: none;
-    color:inherit;
+    color: inherit;
 }
 
 h1 {
     font-family: Impact, Charcoal, sans-serif;
     font-style: italic;
-    font-size: 420%;
-    margin:0;
+    font-size: 100px;
+    margin: 0;
     color: #000000 !important;
 }
 
@@ -70,8 +103,17 @@ h1 {
     color: inherit;
 }
 
+img.the_picture {
+    width: inherit;
+}
+
+.comment_box {
+    border: 1px grey solid;
+    max-width: 100%;
+}
+
 .link:hover {
-    color: red;
+    color: #8196ff;
 }
 
 .header_links {
@@ -79,16 +121,17 @@ h1 {
     position: absolute;
     right: 3px;
     bottom: 3px;
-    color: darkgray !important;
 }
 
 .header_box {
     position: relative;
     width: 100%;
     text-align: center;
+    background-color: #15882f;
 }
 
 .side_box {
+    width: 100%;
     height: 600px;
     text-align: center;
 }
@@ -97,14 +140,24 @@ h1 {
     height: 600px;
     text-align: center;
     position: relative;
+    padding-top: 10px;
+}
+
+.main_box_on_user {
+    height: 600px;
+    min-width: 480px;
+    text-align: center;
+    position: relative;
+    padding-top: 30px;
 }
 
 .footer_box {
-
+    text-align: right;
+    color: #15882f;
 }
 
 input {
-    width:95%;
+    width: 95%;
     height: 40px;
     margin: 10px;
     text-align: center;
@@ -120,26 +173,17 @@ form {
 }
 
 .session_form {
-    width:400px;
-    margin:0 auto;
-    padding:0 100px;
+    width: 400px;
+    margin: 0 auto;
+    padding: 0 100px;
 }
-
-/*
-@media screen and (max-width: 550px) {
-    .session_form {
-        padding:0 0;
-        width:100%;
-    }
-}
-*/
 
 .error {
     color: red;
 }
 
 .welcome_box {
-    width : 800px;
+    width: 800px;
     margin: 0 auto;
     padding: 10px;
 }
@@ -148,14 +192,14 @@ form {
     width: 142px;
     padding: 2px;
     margin: 0 auto;
-    text-align:center;
+    text-align: center;
     background-color: white;
     border: white solid 2px;
 }
 
 .homepage_link_box:hover {
     background-color: black;
-    color:white !important;
+    color: white !important;
 }
 
 button.ouistiti {
@@ -168,34 +212,24 @@ button.ouistiti {
 }
 
 div.button_box {
-    width:100%;
+    width: 100%;
 }
 
-div.video_picture_box{
-    width: 50%;
-    float:left;
-    margin: 0;
+div.video_picture_box {
+    width: 480px;
+    float: left;
+    border-right: solid 1px #15882f;
 }
 
 div.picture_options_box {
-    width: 48%;
-    height: 100%;
-    float:left;
+    width: auto;
 }
 
 div.video_picture_container {
-    width: 80%;
-    height: 80%;
+    width: 400px;
+    height: 300px;
     margin: auto auto;
     background-color: black;
-}
-
-.vertical_bar{
-    float:left;
-    margin: 2% 0;
-    width:1px;
-    border-left:1px solid gray;
-    height: 92%;
 }
 
 .camera_stream {
@@ -204,13 +238,21 @@ div.video_picture_container {
 
 .pic_box {
     margin: 10px;
-    width: 150px;
+    width: 250px;
+    height: 190px !important;
     display: inline-block;
+    box-shadow: -2px -2px 3px #a09ba4;
+    border-radius: 3px;
 }
 
 .pictures {
     width: 100%;
-    height: auto;
+    max-height: inherit;
+    border-radius: 4px;
+}
+
+.pic_box:hover {
+    transform: scale(1.05);
 }
 
 .all_pic_container {
@@ -235,7 +277,7 @@ div.video_picture_container {
 
 img.thumbs_up_pic {
     width: 50%;
-    float:right;
+    float: right;
 }
 
 p.nbr_like {
@@ -247,7 +289,6 @@ p.nbr_like {
     width: 96%;
     margin: auto;
     height: 95%;
-    overflow-y: auto;
 }
 
 .comment_box {
@@ -257,24 +298,24 @@ p.nbr_like {
 
 .comment_user {
     max-width: 25%;
-    float:left;
+    float: left;
     text-align: left;
     font-style: italic;
 }
 
 .comment_content {
     max-width: 75%;
-    float:right;
+    float: right;
 }
 
 .all_picture_link {
-    position:absolute;
+    position: absolute;
     left: 5px;
-    bottom:5px;
+    bottom: 5px;
 }
 
-.picture_to_add_box{
-    width: 80%;
+.picture_to_add_box {
+    width: inherit;
     margin: 10px auto;
     display: inline-block;
 }
@@ -306,13 +347,52 @@ p.nbr_like {
     width: 0;
     height: 0;
     margin: auto;
-    color:white;
+    color: white;
     border: white 1px solid;
 }
 
 a.forget_password {
     font-size: 14px;
     font-style: italic;
-    margin:0;
+    margin: 0;
+}
+
+@media screen and (max-width: 850px) {
+    h1 {
+        font-size: 60px;
+        padding-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 570px) {
+    .pagination {
+        clear: both;
+        width: 36px;
+        top: -560px;
+
+    }
+}
+
+@media screen and (max-width: 1450px) {
+    .picture_to_add {
+        width: 100px;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .user_main {
+        width: 100%;
+    }
+
+    .video_picture_box {
+        border: none !important;
+        clear: both;
+        margin: auto;
+    }
+
+    .user_side {
+        clear: both;
+        width: 100%;
+    }
 }
 

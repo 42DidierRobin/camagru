@@ -1,6 +1,6 @@
 <?php ?>
 <body>
-<div class="header container">
+<div class="header_container">
 	<div class="header_box box">
 		<a href="/index.php">
 			<h1>
@@ -15,7 +15,7 @@
 						Browse user pictures
 					</a>
 					| 
-					<a href="/index.php?" class="link">
+					<a href="/index.php" class="link">
 						Take a picture
 					</a></div>';
 			}

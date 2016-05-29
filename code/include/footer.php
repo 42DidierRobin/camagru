@@ -7,8 +7,8 @@
  */?>
 
 <div class="footer container">
-    <div class="footer_box box">
-        Footer
+    <div class="footer_box">
+        @Copyrigth Mathiisss
     </div>
 </div>
 </html>

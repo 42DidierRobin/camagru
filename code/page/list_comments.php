@@ -5,9 +5,9 @@
 	 * Date: 5/26/16
 	 * Time: 4:29 PM
 	 */
-	require_once("./model/User.php");
-	require_once("./model/DAOComments.php");
-	require_once("./model/Comments.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/User.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/DAOComments.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/Comments.php");
 
 	$list = DAOComments::getPictureComments($pic->getId());
 	echo '<div class="all_comments_container">';

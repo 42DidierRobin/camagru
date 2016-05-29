@@ -23,13 +23,13 @@
 
 		$password = hash('whirlpool', $_POST['pwd']);
 		$user = DAOUser::getUserByLogin(strtolower($_POST['login']));
-		if (!empty($user->getActivation()))
-		{
-			$error = 'Veuillez activer votre email';
-		}
-		elseif (empty($user))
+		if (empty($user))
 		{
 			$error = 'Cet Utilisateur n\'existe pas';
+		}
+		elseif (!empty($user->getActivation()))
+		{
+			$error = 'Veuillez activer votre email';
 		}
 		elseif ($password != $user->getPassword())
 		{

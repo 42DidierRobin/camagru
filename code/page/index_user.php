@@ -1,11 +1,11 @@
 <?php
 
-	require_once("./model/DAOPicture.php");
-	require_once("./model/DAOUser.php");
-	require_once("./model/DAOComments.php");
-	require_once("./model/User.php");
-	require_once("./model/DAOLikes.php");
-	require_once "./page/list_picture.php";
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/DAOPicture.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/DAOUser.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/DAOComments.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/User.php");
+	require_once($_SERVER['DOCUMENT_ROOT']."/model/DAOLikes.php");
+	require_once $_SERVER['DOCUMENT_ROOT']."/page/list_picture.php";
 	/**
 	 * Created by PhpStorm.
 	 * User: rdidier
@@ -13,47 +13,63 @@
 	 * Time: 6:23 PM
 	 */
 
+	function check_image($img_str)
+	{
+		$img = @imagecreatefromstring($img_str);
+		if (!$img)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	$error = "";
 	if (isset($_POST['picture']))
 	{
 		$user = unserialize($_SESSION['user'])->getLogin();
-
-		$img = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $_POST['picture']));
-		$img = imagecreatefromstring($img);
-		if (!$img)
+		$img_str = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $_POST['picture']));
+		if (!check_image($img_str))
 		{
-			echo 'yo';
+			$error = "not a valid format.";
 		}
-		$stamp = imagecreatefrompng("./files/".$_POST['png']);
-		$marge_right = 10;
-		$marge_bottom = 10;
-		$sx = imagesx($stamp);
-		$sy = imagesy($stamp);
-		imagecopy($img, $stamp, imagesx($img) - $sx - $marge_right, imagesy($img) - $sy - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
-		ob_start();
+		else if (strlen($img_str) > 2000000){
+			$error = 'too big';
+		}
+		else
+		{
+			$img = imagecreatefromstring($img_str);
+			$stamp = imagecreatefrompng($_SERVER['DOCUMENT_ROOT']."/files/" . $_POST['png']);
+			$marge_right = 10;
+			$marge_bottom = 10;
+			$sx = imagesx($stamp);
+			$sy = imagesy($stamp);
+			imagecopy($img, $stamp, imagesx($img) - $sx - $marge_right, imagesy($img) - $sy - $marge_bottom, 0, 0, imagesx($stamp), imagesy($stamp));
+			ob_start();
 			imagepng($img);
 			$final = ob_get_contents();
-		ob_end_clean();
-		$final = 'data:image/png;base64,' . base64_encode($final);
-		DAOPicture::newPicture($user, $final);
-		header("location: index.php");
-		exit(1);
+			ob_end_clean();
+			$final = 'data:image/png;base64,' . base64_encode($final);
+			DAOPicture::newPicture($user, $final);
+			header("location: index.php");
+			exit(1);
+		}
 	}
 ?>
 
 <div class="user_main container">
-	<div class="main_box box">
+	<div class="main_box_on_user box">
 		<?php
 
 			//fonction pour retourner a lindex
 			function home()
 			{
-				if (isset($_GET['pic_id']) && $_GET['pic_id'])
+				if (isset($_GET['pic_id']) && $_GET['pic_id'] && DAOPicture::pictureExist($_GET['pic_id']))
 				{
 					header("location: ./index.php?pic_id=" . $_GET['pic_id']);
 				}
 				else
 				{
-					header("location: ./index.php?");
+					header("location: ./index.php");
 				}
 				exit(1);
 			}
@@ -67,34 +83,31 @@
 				$_GET['pic_id'] = 0;
 				home();
 			}
-			else
+			elseif (isset($_GET['like']))
 			{
-				if (isset($_GET['like']))
+				DAOLikes::newLike(unserialize($_SESSION['user'])->getLogin(), $_GET['pic_id']);
+				home();
+			}
+			elseif (isset($_GET['dislike']))
+			{
+				DAOLikes::deleteLike($_GET['dislike']);
+				home();
+			}
+			elseif (isset($_POST['comment']))
+			{
+				$comment = htmlentities($_POST['comment']);
+				if (!$comment)
 				{
-					DAOLikes::newLike(unserialize($_SESSION['user'])->getLogin(), $_GET['pic_id']);
 					home();
 				}
-				else
-				{
-					if (isset($_GET['dislike']))
-					{
-						DAOLikes::deleteLike($_GET['dislike']);
-						home();
-					}
-					else
-					{
-						if (isset($_POST['comment']))
-						{
-							DAOComments::newComment(unserialize($_SESSION['user'])->getLogin(), $_POST['pic_id'], $_POST['comment']);
-							$OwnerMail = DAOUser::getUserByLogin(DAOPicture::getPictureFromId($_POST['pic_id'])->getUser())->getEmail();
-							echo $OwnerMail;
-							mail($OwnerMail, "Camagru: a picture of yours has been commented !",
-								 'The user :'.unserialize($_SESSION['user'])->getLogin().' just comment one of your picture !');
-							home();
-						}
-					}
-				}
+				DAOComments::newComment(unserialize($_SESSION['user'])->getLogin(), $_POST['pic_id'], $comment);
+				$OwnerMail = DAOUser::getUserByLogin(DAOPicture::getPictureFromId($_POST['pic_id'])->getUser())->getEmail();
+				echo $OwnerMail;
+				mail($OwnerMail, "Camagru: a picture of yours has been commented !",
+					 'The user :' . unserialize($_SESSION['user'])->getLogin() . ' just comment one of your picture !');
+				home();
 			}
+
 
 			//on affiche limage ou la video
 			if (isset($_GET['pic_id']) && $_GET['pic_id'] && isset($_SESSION['user']))

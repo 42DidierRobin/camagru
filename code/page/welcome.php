@@ -12,7 +12,7 @@
 					}
 					else
 					{
-						echo 'Welcome in this amazing Website ! We just send you an email. Don\'t forget to activate your account by clicking on the link in it .
+						echo 'Welcome in this amazing Website ! We just sent you an email. Don\'t forget to activate your account by clicking on the link in it .
 								Then you will be able to take your picture and share it with your friend !';
 					}
 				?>

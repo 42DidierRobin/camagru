@@ -1,18 +1,16 @@
 <?php
-	error_reporting("E_ALL");
-	ini_set("display_errors", '1');
+
 	require_once('../model/DAOUser.php');
 
-	print_r($_POST);
-	if ($_SERVER['REQUEST_METHOD'] == 'POST')
+	if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['login'])
+		&& isset($_POST['email']) && isset($_POST['pwd']) && isset($_POST['pwd2']))
 	{
-
 		$result = DAOUser::getUserByLogin($_POST['login']);
 		if (!empty($result))
 		{
 			$error = 'already existing user';
 		}
-		elseif (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", $_POST['email']))
+		elseif (!preg_match("#^[a-z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$#", strtolower($_POST['email'])))
 		{
 			$error = 'invalid mail adress format';
 		}
@@ -26,7 +24,7 @@
 		}
 		elseif (!preg_match("#^\S*(?=\S{6,})(?=\S*[a-z])(?=\S*[A-Z])(?=\S*[\d])\S*$#", $_POST['pwd']))
 		{
-			$error = 'invalid password format';
+			$error = 'invalid password format. (One maj, one number at least, 6 minimum long)';
 		}
 		elseif (empty($_POST['login']))
 		{
@@ -34,18 +32,17 @@
 		}
 		else
 		{
-			$user = DAOUser::newUser(strtolower($_POST['login']), hash('whirlpool', $_POST['pwd']), $_POST['email']);
+			$user = DAOUser::newUser(strtolower($_POST['login']), hash('whirlpool', $_POST['pwd']), strtolower($_POST['email']));
 			$link = 'http://164.132.103.226/page/connection.php?a=' . $user->getActivation();
 			mail($_POST['email'], "Camagru confirmation", 'Welcome ! Follow this link to activate your account : ' . $link);
-			//header('location: welcome.php');
+			header('location: welcome.php');
 			exit (1);
 		}
 
 	}
-
+	session_start();
 	include "../include/head.php";
 	include "../include/header.php";
-	session_start();
 ?>
 	<div class="container">
 		<div class="session_form box">

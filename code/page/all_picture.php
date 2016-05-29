@@ -1,5 +1,5 @@
 <?php
-	require_once "./page/list_picture.php";
+	require_once $_SERVER['DOCUMENT_ROOT']."/page/list_picture.php";
 	/**
 	 * Created by PhpStorm.
 	 * User: rdidier
@@ -9,27 +9,28 @@
 
 <div class="container anonym_main">
 	<div class="main_box box">
-		photo du site
 		<?php
 			$allPics = DAOPicture::getAllPicture();
 			$nbPics = count($allPics);
-			$nbPerPage = 21;
+			$nbPerPage = 8;
 			$nbPage = floor($nbPics / $nbPerPage) + (($nbPics % $nbPerPage == 0) ? 0 : 1);
-			echo $nbPage;
+			if (!$nbPage)
+				$nbPage = 1;
 
 			if (isset($_GET['p']) && $_GET['p'] > 0 && $_GET['p'] <= $nbPage)
 			{
-				$listPics = array_slice($allPics, $_GET['p'] * $nbPerPage, $nbPerPage);
+				$listPics = array_slice($allPics, ($_GET['p'] - 1) * $nbPerPage, $nbPerPage);
 				list_it($listPics);
 			}
 			else{
-				list_it(array_slice($allPics, 0, $nbPerPage));
+				header('location: ./index.php?p=1');
+				exit(1);
 			}
 
 			echo '<div class=\"pagination\">';
 			for ($p = 0; $p < $nbPage ; $p++)
 			{
-				echo '<a href="/index.php?p='.$p.'" class="pagination">'.($p + 1).'</a>';
+				echo '<a href="/index.php?p='.($p + 1).'" class="pagination"><div class=\'shadow page_box\'>'.($p + 1).'</div></a>';
 			}
 			echo '</div>'
 		?>
