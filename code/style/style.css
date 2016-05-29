@@ -26,7 +26,7 @@ body {
     position: absolute;
     float: left;
     left: 10px;
-    bottom: 50px;
+    bottom: 10px;
     width: 100%;
     height: 40px;
 }
@@ -137,7 +137,8 @@ img.the_picture {
 }
 
 .main_box {
-    height: 600px;
+    min-height: 600px;
+    height: auto;
     text-align: center;
     position: relative;
     padding-top: 10px;
@@ -146,6 +147,7 @@ img.the_picture {
 .main_box_on_user {
     height: 600px;
     min-width: 480px;
+    overflow-y: scroll;
     text-align: center;
     position: relative;
     padding-top: 30px;
@@ -255,6 +257,10 @@ div.video_picture_container {
     transform: scale(1.05);
 }
 
+.link_page  {
+    float:left;
+}
+
 .all_pic_container {
     width: 96%;
     margin: auto;
@@ -269,26 +275,45 @@ div.video_picture_container {
 }
 
 .like_box {
-    position: absolute;
-    width: 50px;
-    left: 2px;
-    top: 20px;
+    clear: both;
+    width: 100%;
+}
+
+.nbr_like_box {
+    display: inline;
+    width: 45%;
+}
+
+.like_button {
+    display: inline;
+    width: 200px;
+    height: 60px !important;
+}
+
+.picture_buttons {
+    background-color: #15882f;
+    color:white;
+    max-width: 300px;
 }
 
 img.thumbs_up_pic {
-    width: 50%;
+    width: 50px;
+    margin: 0;
     float: right;
 }
 
 p.nbr_like {
-    width: 50%;
-    float: left;
+    font-size: 42px;
+    margin: 0;
+    float:right;
 }
 
 .all_comments_container {
+    clear:both;
     width: 96%;
     margin: auto;
     height: 95%;
+    word-wrap: break-word;
 }
 
 .comment_box {
@@ -364,14 +389,6 @@ a.forget_password {
     }
 }
 
-@media screen and (max-width: 570px) {
-    .pagination {
-        clear: both;
-        width: 36px;
-        top: -560px;
-
-    }
-}
 
 @media screen and (max-width: 1450px) {
     .picture_to_add {

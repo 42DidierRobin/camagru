@@ -83,17 +83,17 @@
 				$_GET['pic_id'] = 0;
 				home();
 			}
-			elseif (isset($_GET['like']))
+			elseif (isset($_GET['like']) && DAOPicture::pictureExist($_GET['pic_id']))
 			{
 				DAOLikes::newLike(unserialize($_SESSION['user'])->getLogin(), $_GET['pic_id']);
 				home();
 			}
-			elseif (isset($_GET['dislike']))
+			elseif (isset($_GET['dislike']) && DAOPicture::pictureExist($_GET['pic_id']))
 			{
 				DAOLikes::deleteLike($_GET['dislike']);
 				home();
 			}
-			elseif (isset($_POST['comment']))
+			elseif (isset($_POST['comment']) && DAOPicture::pictureExist($_GET['pic_id']))
 			{
 				$comment = htmlentities($_POST['comment']);
 				if (!$comment)

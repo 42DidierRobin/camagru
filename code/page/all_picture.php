@@ -27,10 +27,10 @@
 				exit(1);
 			}
 
-			echo '<div class=\"pagination\">';
+			echo '<div class="pagination">';
 			for ($p = 0; $p < $nbPage ; $p++)
 			{
-				echo '<a href="/index.php?p='.($p + 1).'" class="pagination"><div class=\'shadow page_box\'>'.($p + 1).'</div></a>';
+				echo '<a href="/index.php?p='.($p + 1).'" class="link_page"><div class=\'shadow page_box\'>'.($p + 1).'</div></a>';
 			}
 			echo '</div>'
 		?>
